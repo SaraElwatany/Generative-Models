@@ -1,10 +1,11 @@
 # Generative-Models
 
-Assignment
-Implement VAE and DDPM Architectures from Scratch: Develop both Variational Autoencoder (VAE) and Denoising Diffusion Probabilistic Model (DDPM) architectures from the ground up, without using pre-existing full implementations.
+Time Embedding: Enables temporal dynamics.
 
-● Train on Public Dataset: Train both implemented models on a publicly available dataset of their choice.
+Skip Connections: Integrates fine-grained spatial details into the decoder via concatenation.
 
-● Quantitative and Qualitative Benchmarking: Conduct a comprehensive comparison of the two models, including:
-○ Quantitative Analysis: Use appropriate metrics (e.g., FID, Inception Score) to numerically evaluate the performance of each model.
-○ Qualitative Analysis: Provide a subjective assessment of the generated images from both models, discussing aspects such as diversity, realism, and thematic consistency.
+Flexible Architecture: Allows customization via model_config for varying depths, resolutions, and feature richness.
+
+Normalization and Activation: GroupNorm ensures stable training, while SiLU activation improves non-linearity.
+
+Output Consistency: Ensures the output image retains the original spatial dimensions and channel count.
