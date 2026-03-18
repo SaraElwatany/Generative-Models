@@ -42,20 +42,20 @@ feat/VAEs/
 │
 └── checkpoints/                # Saved model checkpoints for different configs
     ├── mnist/
-    │   ├── vae_mnist_beta0.1.pth
-    │   ├── vae_mnist_beta0.3.pth
-    │   ├── vae_mnist_beta0.5.pth
-    │   ├── vae_mnist_beta1.pth
-    │   └── vae_mnist_beta5.pth
+    │   ├── mnist_beta_0.1.pth
+    │   ├── mnist_beta_0.3.pth
+    │   ├── mnist_beta_0.5.pth
+    │   ├── mnist_beta_1.pth
+    │   └── mnist_beta_5.pth
     ├── cifar10/
-    │   ├── vae_cifar10_beta0.3.pth
-    │   ├── vae_cifar10_beta0.5.pth
-    │   └── vae_cifar10_beta5.pth
+    │   ├── cifar10_beta_0.3.pth
+    │   ├── cifar10_beta_0.5.pth
+    │   └── cifar10_beta_5.pth
     └── oxford_flowers/
-        ├── vae_flowers_beta0.3.pth
-        ├── vae_flowers_beta0.5.pth
-        ├── vae_flowers_beta1.pth
-        └── vae_flowers_beta5.pth
+        ├── flowers_beta_0.3.pth
+        ├── flowers_beta_0.5.pth
+        ├── flowers_beta_1.pth
+        └── flowers_beta_5.pth
 ```
 
 ---
