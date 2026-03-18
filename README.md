@@ -37,7 +37,7 @@ All training was conducted on **Kaggle GPU notebooks** to leverage free GPU comp
 ```
 feat/DDPMs/
 │
-├── ddpm_notebook.ipynb          # Main Kaggle notebook: build, train, evaluate, generate
+├── ddpm-from-scratch.ipynb          # Main Kaggle notebook: build, train, evaluate, generate
 ```
 
 | Dataset | Checkpoint | Download |
