@@ -41,6 +41,18 @@ feat/DDPMs          # DDPM implementation, training, and generation pipeline
 ---
 
 
+## Branch Structure
+
+```
+main/
+│
+├── Generative Models_Report.pdf     # Report documenting every single step used, the configurations used, the results (generated images and samples with comments)
+└── README.md                             # This File
+```
+
+---
+
+
 ## Branches
 
 ### `feat/classifiers`
