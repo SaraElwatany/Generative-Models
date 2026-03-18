@@ -1,11 +1,186 @@
-# Generative-Models
+# Generative Models Project (VAE & DDPM)
 
-Implement VAE and DDPM Architectures from Scratch: Develop both Variational Autoencoder (VAE) and Denoising Diffusion Probabilistic Model (DDPM) architectures from the ground up, without using pre-existing full implementations.
+This repository contains implementations and experiments for **deep generative models**, including:
 
-● Train on Public Dataset: Train both implemented models on a publicly available dataset of their choice.
+- **Variational Autoencoders (VAEs)**
+- **Denoising Diffusion Probabilistic Models (DDPMs)**
 
-● Quantitative and Qualitative Benchmarking: Conduct a comprehensive comparison of the two models, including:
+The project explores model behavior across multiple datasets and evaluates performance using metrics such as **Fréchet Inception Distance (FID)** and **Inception Score (IS)**.
 
-○ Quantitative Analysis: Use appropriate metrics (e.g., FID, Inception Score) to numerically evaluate the performance of each model.
+---
 
-○ Qualitative Analysis: Provide a subjective assessment of the generated images from both models, discussing aspects such as diversity, realism, and thematic consistency.
+## Repository Structure
+
+The repository is organized into multiple branches, each focusing on a specific component of the project:
+
+```bash
+main                # Documentation and project overview
+feat/classifiers    # Classifier training + checkpoints (for IS score)
+feat/vaes           # VAE training, experiments, and checkpoints
+feat/ddpms          # DDPM implementation and training scripts
+```
+
+
+## Project Overview
+
+This project aims to:
+
+- Implement generative models from scratch
+- Study the effect of hyperparameters (e.g., β in VAEs)
+- Compare performance across datasets of increasing complexity
+- Evaluate generated samples using:
+  * FID → measures similarity to real data distribution
+  * Inception Score (IS) → measures quality and diversity
+
+
+## Branch Details
+
+feat/classifiers
+
+Contains the notebook for training classifiers used in Inception Score computation
+
+Includes trained checkpoints for:
+
+MNIST
+
+CIFAR10
+
+Oxford Flowers
+
+These classifiers are not used for generation, only for evaluation
+
+feat/vaes
+
+Implementation and training of Variational Autoencoders
+
+Experiments conducted with different β values to study:
+
+Reconstruction vs regularization trade-off
+
+Latent space behavior
+
+Includes:
+
+Training notebooks/scripts
+
+Saved checkpoints for multiple configurations
+
+Results across datasets:
+
+MNIST
+
+CIFAR10
+
+Oxford Flowers
+
+feat/ddpms
+
+Implementation of Denoising Diffusion Probabilistic Models
+
+Includes:
+
+Training scripts
+
+Sampling/generation pipeline
+
+Note:
+Due to large file sizes, DDPM checkpoints are not stored in the repository.
+They are available via Google Drive (add link here).
+
+Datasets Used
+
+The project evaluates models on datasets with increasing complexity:
+
+MNIST → Simple grayscale digits
+
+CIFAR10 → Low-resolution natural images
+
+Oxford Flowers → More complex, fine-grained dataset
+
+Evaluation Metrics
+Inception Score (IS)
+
+Uses a trained classifier to compute:
+
+Confidence → clear class predictions
+
+Diversity → variety across classes
+
+Fréchet Inception Distance (FID)
+
+Measures distance between real and generated image distributions
+
+Lower is better
+
+Key Insights
+VAEs
+
+Lower β → better reconstruction, less regularized latent space
+
+Higher β → smoother images, stronger latent structure, but loss of details
+
+Tend to produce blurry outputs due to pixel-wise loss (e.g., MSE)
+
+DDPMs
+
+Generate sharper and more realistic samples compared to VAEs
+
+Require more training time and computational resources
+
+Performance improves significantly with more training steps
+
+Dataset Complexity
+
+MNIST → easiest, strong structure learning
+
+CIFAR10 → moderate difficulty with more variability
+
+Oxford Flowers → most challenging due to fine-grained details
+
+How to Use
+Option 1: Explore by Branch
+git clone <repo_url>
+git checkout feat/vaes
+Option 2: Run on Kaggle
+
+Upload notebooks from any branch to Kaggle
+
+Enable GPU for better performance
+
+Update dataset paths as needed
+
+Option 3: Run Locally
+
+Clone the repository
+
+Install dependencies (PyTorch, Torchvision, etc.)
+
+Install Git LFS for large files:
+
+git lfs install
+
+Update dataset/checkpoint paths
+
+Run notebooks or scripts
+
+Notes
+
+Large checkpoint files are handled using Git LFS
+
+DDPM checkpoints are stored externally (Google Drive) due to size limits
+
+Classifiers are used strictly for evaluation (IS score)
+
+Future Work
+
+Improve VAE sharpness using:
+
+Perceptual loss
+
+VAE-GAN hybrids
+
+Train DDPMs for longer schedules
+
+Explore advanced diffusion models (e.g., DDIM, Latent Diffusion)
+
+Apply models to higher-resolution datasets
