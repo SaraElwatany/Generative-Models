@@ -161,14 +161,14 @@ Evaluates both the **quality** and **diversity** of generated images using a cla
 
 Open the notebook directly on Kaggle to use free GPU compute:
 
-> 🔗 **[Open Kaggle Notebook Playground →](https://www.kaggle.com)**  
+> 🔗 [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/saraaymanelwatany/vae-pytorch)
 > *(Replace this link with your actual Kaggle notebook URL)*
 
 Steps:
 1. Open the notebook on Kaggle.
 2. Enable GPU: `Settings → Accelerator → GPU T4 x2` (or P100).
-3. Select your dataset: set `DATASET = "mnist"` / `"cifar10"` / `"oxford_flowers"`.
-4. Set your desired beta value: `BETA = 0.1` (or `0.3`, `0.5`, `1`, `5`).
+3. Select your dataset: set `DATASET = INDEX` where INDEX: `0` → MNIST · `1` → CIFAR-10 · `2` → Oxford Flowers
+4. Set your desired beta value.
 5. Run all cells to train, evaluate, and generate samples.
 
 ---
@@ -191,38 +191,34 @@ pip install torch torchvision numpy matplotlib scikit-learn scipy tqdm
 
 #### 3. Configure training parameters
 
-At the top of the notebook (or in the config cell), set:
+At the **"Load Training & Testing Datasets"** section in the notebook in the config cell, set:
 
 ```python
-DATASET    = "mnist"       # Options: "mnist", "cifar10", "oxford_flowers"
-BETA       = 1.0           # Controls KL divergence weight
-LOSS_TYPE  = "mse"         # Options: "mse", "l1", "bce"
-LATENT_DIM = 128           # Dimensionality of latent space
-EPOCHS     = 200
-LR         = 1e-3
-BATCH_SIZE = 64
+DATASET_INDEX = int       # Options: 0: "mnist", 1: "cifar10", 2: "oxford_flowers"
+
+Ex:
+DATASET_INDEX = 0      # Will load the mnist dataset
 ```
 
 #### 4. Train the VAE
 
 ```python
 # Run the training cell
-train_model(model, dataloader, optimizer, epochs=EPOCHS, beta=BETA)
+train_model(model, optimizer, lr_scheduler, train_dataloader, epochs=500, beta=5, sharp=False, distribution='gaussian', checkpoint_path='./checkpoints/checkpoint.pt', device=device)
 ```
 
 #### 5. Evaluate
 
 ```python
-fid_score  = compute_fid(real_images, generated_images)
-inc_score  = compute_inception_score(generated_images)
-print(f"FID: {fid_score:.3f} | IS: {inc_score[0]:.4f} ± {inc_score[1]:.4f}")
+# Evaluate the model using the FID and Inception scores
+metrics = eval_model(model, classifier_model=classifier_model, data_loader=test_dataloader, batch_size=32, num_samples=100, device=device)
 ```
 
 #### 6. Generate samples
 
 ```python
-# Generates 100 new images by sampling from the latent Gaussian distribution
-generate_samples(model, n_samples=100)
+# Generate samples of images
+generated_imgs = generate_samples(model, num_samples=100, checkpoint_path="./checkpoints/checkpoint.pt")
 ```
 
 ---
