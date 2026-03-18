@@ -176,7 +176,7 @@ git checkout feat/VAEs      # or feat/DDPMs, feat/classifiers
 | Branch | Notebook |
 |---|---|
 | `feat/VAEs` | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/saraaymanelwatany/vae-pytorch) |
-| `feat/DDPMs` | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/saraaymanelwatany/ddpm-pytorch) |
+| `feat/DDPMs` | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/saraaymanelwatany/ddpm-from-scratch) |
 
 ### Option 3 — Run Locally
 
@@ -203,6 +203,5 @@ git checkout feat/VAEs
 - Train DDPMs for longer with larger model capacity on CIFAR-10
 - Explore **DDIM** (faster sampling) and **Latent Diffusion Models** (memory-efficient, higher resolution)
 - Apply models to higher-resolution datasets with proper augmentation pipelines
-- Experiment with conditional generation (class-conditioned VAEs and DDPMs)
 
 ---
