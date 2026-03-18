@@ -89,13 +89,7 @@ Generated Images (VAE / DDPM)
 
 ## Model Architecture
 
-All three classifiers use **ResNet-18** as the backbone, fine-tuned for each dataset:
-
-| Dataset | Input Size | Output Classes | Modification |
-|---|---|---|---|
-| MNIST | 28×28 grayscale | 10 | First conv layer adjusted for 1-channel input |
-| CIFAR-10 | 32×32 RGB | 10 | Standard ResNet-18 |
-| Oxford Flowers | 32×32 RGB | 102 | Final FC layer adjusted for 102 classes |
+All three classifiers use **ResNet-18** as the backbone, fine-tuned for each dataset.
 
 ---
 
@@ -103,9 +97,9 @@ All three classifiers use **ResNet-18** as the backbone, fine-tuned for each dat
 
 | Dataset | Classes | Resolution | Training Samples |
 |---|---|---|---|
-| **MNIST** | 10 (digits 0–9) | 28×28 grayscale | 60,000 |
+| **MNIST** | 10 (digits 0–9) | Resized to 32×32x3 grayscale | ~60,000 |
 | **CIFAR-10** | 10 (vehicles, animals) | 32×32 RGB | 50,000 |
-| **Oxford Flowers** | 102 flower categories | Resized to 32×32 RGB | ~6,149 (train split) |
+| **Oxford Flowers** | 102 flower categories | Resized to 32×32 RGB | ~2,040 (train + val split) |
 
 ---
 
@@ -132,7 +126,7 @@ The `checkpoints/` directory contains the best saved weights for each classifier
 Steps:
 1. Open the notebook on Kaggle.
 2. Enable GPU: `Settings → Accelerator → GPU T4 x2` (or P100).
-3. Select your dataset: set `DATASET = INDEX` where INDEX: <kbd>0</kbd> → MNIST · <kbd>1</kbd> → CIFAR-10 · <kbd>2</kbd> → Oxford Flowers
+3. Select your dataset: set `DATASET_INDEX  = INDEX` where INDEX: <kbd>0</kbd> → MNIST · <kbd>1</kbd> → CIFAR-10 · <kbd>2</kbd> → Oxford Flowers
 4. Run all cells — the notebook will load the dataset, train ResNet-18, and save the best checkpoint.
 
 ---
@@ -162,10 +156,10 @@ pip install torch torchvision numpy matplotlib scikit-learn tqdm
 
 #### 4. Train a classifier
 
-Open `train-classifiers-for-inceptionscore.ipynb` and set:
+Open `classifiers-for-inceptionscore.ipynb` and set:
 
 ```python
-DATASET = 0    # 0: MNIST | 1: CIFAR-10 | 2: Oxford Flowers
+DATASET_INDEX  = 0    # 0: MNIST | 1: CIFAR-10 | 2: Oxford Flowers
 ```
 
 Run all cells — the best model will be saved to `checkpoints/`.
