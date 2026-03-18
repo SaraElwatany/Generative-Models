@@ -178,7 +178,7 @@ Steps:
 #### 1. Clone the repository and switch to this branch
 
 ```bash
-git clone [https://github.com/<your-username>/<your-repo>.git](https://github.com/SaraElwatany/Generative-Models.git)
+git clone https://github.com/SaraElwatany/Generative-Models.git
 cd Generative-Models
 git checkout feat/VAEs
 ```
