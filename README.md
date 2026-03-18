@@ -99,7 +99,7 @@ Takes the latent vector **z**, reshapes it into a spatial tensor, and passes it 
 The VAE loss combines two terms:
 
 ```
-L = Reconstruction Loss + β · KL Divergence
+$$\mathcal{L} = \mathcal{L}_{\text{recon}} + \beta \cdot D_{KL}$$
 ```
 
 **Reconstruction Loss options:**
@@ -162,7 +162,6 @@ Evaluates both the **quality** and **diversity** of generated images using a cla
 Open the notebook directly on Kaggle to use free GPU compute:
 
 > 🔗 [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/saraaymanelwatany/vae-pytorch)
-> *(Replace this link with your actual Kaggle notebook URL)*
 
 Steps:
 1. Open the notebook on Kaggle.
