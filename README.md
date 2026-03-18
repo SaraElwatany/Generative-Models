@@ -178,8 +178,8 @@ Steps:
 #### 1. Clone the repository and switch to this branch
 
 ```bash
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
+git clone [https://github.com/<your-username>/<your-repo>.git](https://github.com/SaraElwatany/Generative-Models.git)
+cd Generative-Models
 git checkout feat/VAEs
 ```
 
@@ -207,14 +207,15 @@ BATCH_SIZE = 64
 
 ```python
 # Run the training cell
-train_vae(model, dataloader, optimizer, epochs=EPOCHS, beta=BETA)
+train_model(model, dataloader, optimizer, epochs=EPOCHS, beta=BETA)
 ```
 
-#### 5. Resume from a checkpoint
+#### 5. Evaluate
 
 ```python
-checkpoint_path = "checkpoints/mnist/vae_mnist_beta1.pth"
-model, optimizer, start_epoch = load_checkpoint(model, optimizer, checkpoint_path)
+fid_score  = compute_fid(real_images, generated_images)
+inc_score  = compute_inception_score(generated_images)
+print(f"FID: {fid_score:.3f} | IS: {inc_score[0]:.4f} ± {inc_score[1]:.4f}")
 ```
 
 #### 6. Generate samples
@@ -222,14 +223,6 @@ model, optimizer, start_epoch = load_checkpoint(model, optimizer, checkpoint_pat
 ```python
 # Generates 100 new images by sampling from the latent Gaussian distribution
 generate_samples(model, n_samples=100)
-```
-
-#### 7. Evaluate
-
-```python
-fid_score  = compute_fid(real_images, generated_images)
-inc_score  = compute_inception_score(generated_images)
-print(f"FID: {fid_score:.3f} | IS: {inc_score[0]:.4f} ± {inc_score[1]:.4f}")
 ```
 
 ---
