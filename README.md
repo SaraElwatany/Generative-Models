@@ -52,7 +52,7 @@ feat/DDPMs/
 
 | Dataset | Classes | Image Size | Notes |
 |---|---|---|---|
-| **MNIST** | 10 (digits 0–9) | 28×28 grayscale | Simple, fast to train — DDPM excels here |
+| **MNIST** | 10 (digits 0–9) | Resized to 32×32 grayscale (originally 28×28) | Simple, fast to train — DDPM excels here |
 | **CIFAR-10** | 10 (vehicles, animals) | 32×32 RGB | Higher complexity, requires more training |
 | **Oxford Flowers** | 102 flower categories | Resized to 32×32 RGB | Small dataset (~8,189 images) — data-hungry DDPMs struggle |
 
