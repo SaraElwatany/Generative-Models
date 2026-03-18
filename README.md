@@ -55,8 +55,8 @@ Implementation and training of Variational Autoencoders
 
 Experiments conducted with different β values to study:
 
-    * Reconstruction vs regularization trade-off
-    * Latent space behavior
+   * Reconstruction vs regularization trade-off
+   * Latent space behavior
 
 Includes:
    1. Training notebook
