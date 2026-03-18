@@ -191,13 +191,13 @@ git checkout feat/DDPMs
 #### 2. Install dependencies
 
 ```bash
-pip install torch torchvision numpy matplotlib scikit-learn scipy 
+pip install torch torchvision numpy matplotlib scikit-learn scipy tqdm
 ```
 
 #### 3. Configure dataset parameters
 
 ```python
-DATASET_INDEX    = 0            # 0: MNIST | 1: CIFAR-10 | 2: Oxford Flowers
+DATASET_INDEX = 0            # 0: MNIST | 1: CIFAR-10 | 2: Oxford Flowers
 ```
 
 
