@@ -41,7 +41,7 @@ Generated Images --> Classifier Model --> Class Probabilities (p(y|x)) --> Compu
 
 - **`train-classifers-for-inceptionscore.ipynb`**:  
   Demonstrates the training of ResNet-18 classifiers on the following datasets:
-  - **MNIST** – 28x28 grayscale digits 
+  - **MNIST** – 28x28 grayscale digits, 10 classes  
   - **CIFAR10** – 32x32 RGB images, 10 classes  
   - **Oxford Flowers** – RGB images, 102 classes  
 
