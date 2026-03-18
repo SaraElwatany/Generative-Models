@@ -94,8 +94,8 @@ The project evaluates models on datasets with increasing complexity:
 * ### Inception Score (IS)
 
 Uses a trained classifier to compute:
-   * Confidence → clear class predictions
-   * Diversity → variety across classes
+   1. Confidence → clear class predictions
+   2. Diversity → variety across classes
   
 
 * ### Fréchet Inception Distance (FID)
