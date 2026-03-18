@@ -38,7 +38,7 @@ All training was conducted on **Kaggle GPU notebooks** to leverage free GPU comp
 ```
 feat/VAEs/
 │
-├── vae_notebook.ipynb          # Main Kaggle notebook: build, train, evaluate, sample
+├── vae_pytorch.ipynb          # Main Kaggle notebook: build, train, evaluate, sample
 │
 └── checkpoints/                # Saved model checkpoints for different configs
     ├── mnist/
@@ -178,8 +178,8 @@ Steps:
 #### 1. Clone the repository and switch to this branch
 
 ```bash
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/SaraElwatany/Generative-Models.git
+cd Generative-Models
 git checkout feat/VAEs
 ```
 
@@ -207,14 +207,15 @@ BATCH_SIZE = 64
 
 ```python
 # Run the training cell
-train_vae(model, dataloader, optimizer, epochs=EPOCHS, beta=BETA)
+train_model(model, dataloader, optimizer, epochs=EPOCHS, beta=BETA)
 ```
 
-#### 5. Resume from a checkpoint
+#### 5. Evaluate
 
 ```python
-checkpoint_path = "checkpoints/mnist/vae_mnist_beta1.pth"
-model, optimizer, start_epoch = load_checkpoint(model, optimizer, checkpoint_path)
+fid_score  = compute_fid(real_images, generated_images)
+inc_score  = compute_inception_score(generated_images)
+print(f"FID: {fid_score:.3f} | IS: {inc_score[0]:.4f} ± {inc_score[1]:.4f}")
 ```
 
 #### 6. Generate samples
@@ -222,14 +223,6 @@ model, optimizer, start_epoch = load_checkpoint(model, optimizer, checkpoint_pat
 ```python
 # Generates 100 new images by sampling from the latent Gaussian distribution
 generate_samples(model, n_samples=100)
-```
-
-#### 7. Evaluate
-
-```python
-fid_score  = compute_fid(real_images, generated_images)
-inc_score  = compute_inception_score(generated_images)
-print(f"FID: {fid_score:.3f} | IS: {inc_score[0]:.4f} ± {inc_score[1]:.4f}")
 ```
 
 ---
@@ -291,8 +284,7 @@ print(f"FID: {fid_score:.3f} | IS: {inc_score[0]:.4f} ± {inc_score[1]:.4f}")
 
 - **VAEs are fast and stable to train**, even on small datasets, but are fundamentally constrained by reconstruction blurriness — particularly when using MSE loss, which averages over possible outputs.
 - **The β parameter is a powerful dial**: higher β improves distributional alignment (lower FID) up to a point, after which excessive regularisation harms reconstruction quality.
-- **L1 loss** can produce slightly sharper edges than MSE and is worth experimenting with on more complex datasets.
-- **Early stopping** is critical to prevent wasted computation and overfitting, especially at high β where the loss landscape changes more abruptly.
+- **Early stopping** is critical to prevent wasted computation and overfitting.
 - **VAEs remain competitive on small datasets** where DDPMs struggle due to data hunger — see the Oxford Flowers results for a direct demonstration of this.
 
 ---
