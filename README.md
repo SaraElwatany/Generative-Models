@@ -167,12 +167,12 @@ Evaluates both the **quality** and **diversity** of generated images using a dat
 
 ### Option 1 — Run on Kaggle (Recommended)
 
-[![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/saraaymanelwatany/ddpm-pytorch)
+[![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/saraaymanelwatany/ddpm-from-scratch)
 
 Steps:
 1. Open the notebook on Kaggle.
 2. Enable GPU: `Settings → Accelerator → GPU T4 x2` (or P100).
-3. Select your dataset: set `DATASET = INDEX` where INDEX: <kbd>0</kbd> → MNIST · <kbd>1</kbd> → CIFAR-10 · <kbd>2</kbd> → Oxford Flowers
+3. Select your dataset: set `DATASET_INDEX = INDEX` where INDEX: <kbd>0</kbd> → MNIST · <kbd>1</kbd> → CIFAR-10 · <kbd>2</kbd> → Oxford Flowers
 4. Configure the noise scheduler: set `T` (number of diffusion timesteps).
 5. Run all cells to train, evaluate, and generate samples.
 
@@ -191,26 +191,17 @@ git checkout feat/DDPMs
 #### 2. Install dependencies
 
 ```bash
-pip install torch torchvision numpy matplotlib scikit-learn scipy tqdm
+pip install torch torchvision numpy matplotlib scikit-learn scipy 
 ```
 
-#### 3. Configure training parameters
+#### 3. Configure dataset parameters
 
 ```python
-DATASET    = 0            # 0: MNIST | 1: CIFAR-10 | 2: Oxford Flowers
-T          = 1000         # Number of diffusion timesteps
-EPOCHS     = 50
-LR         = 1e-4
-BATCH_SIZE = 64
+DATASET_INDEX    = 0            # 0: MNIST | 1: CIFAR-10 | 2: Oxford Flowers
 ```
 
-#### 4. Train the DDPM
 
-```python
-train_ddpm(model, scheduler, dataloader, optimizer, epochs=EPOCHS)
-```
-
-#### 5. Resume from a checkpoint
+#### 4. Resume from a checkpoint [optional]
 
 Download the checkpoint for your dataset:
 
@@ -222,23 +213,29 @@ Download the checkpoint for your dataset:
 
 ```python
 checkpoint_path = "checkpoints/mnist/ddpm_mnist.pt"
-model, optimizer, start_epoch = load_checkpoint(model, optimizer, checkpoint_path)
 ```
+
+#### 5. Train the DDPM
+
+```python
+train_model(model, optimizer, lr_scheduler, train_dataloader, epochs=700, early_stopping=False, checkpoint_path=checkpoint_path, device=device)
+```
+
 
 #### 6. Generate samples
 
 ```python
 # Starts from pure noise and iteratively denoises over T timesteps
-generate_samples(model, scheduler, n_samples=100)
+generate_samples(model_config, beta_start=0.0001, beta_end=0.02, num_timesteps=1000, num_samples=100)
 ```
+
 
 #### 7. Evaluate
 
 ```python
-fid_score  = compute_fid(real_images, generated_images)
-inc_score  = compute_inception_score(generated_images)
-print(f"FID: {fid_score:.3f} | IS: {inc_score[0]:.4f} ± {inc_score[1]:.4f}")
+metrics = eval_model(model, classifier_model, data_loader=test_dataloader, batch_size=32, im_channels=model_config['im_channels'], im_size=model_config['im_size'], num_samples=100, device=device)
 ```
+
 
 ---
 
