@@ -1,171 +1,208 @@
-# Generative Models Project (VAE & DDPM)
+# Generative Models — VAE & DDPM from Scratch
 
-This repository contains implementations and experiments for **deep generative models**, including:
+> A deep learning project exploring and comparing **Variational Autoencoders (VAEs)** and **Denoising Diffusion Probabilistic Models (DDPMs)**, implemented entirely from scratch in PyTorch and trained on Kaggle GPU notebooks.
 
-- **Variational Autoencoders (VAEs)**
-- **Denoising Diffusion Probabilistic Models (DDPMs)**
+---
 
-The project explores model behavior across multiple datasets and evaluates performance using metrics such as **Fréchet Inception Distance (FID)** and **Inception Score (IS)**.
+## Table of Contents
 
+- [Overview](#overview)
+- [Repository Structure](#repository-structure)
+- [Branches](#branches)
+- [Datasets](#datasets)
+- [Evaluation Metrics](#evaluation-metrics)
+- [Experimental Results Summary](#experimental-results-summary)
+- [Key Insights](#key-insights)
+- [How to Use](#how-to-use)
+- [Future Work](#future-work)
+
+---
+
+## Overview
+
+This project implements two families of deep generative models from the ground up and systematically compares their behaviour across datasets of increasing complexity:
+
+- **VAEs** — study the effect of the β hyperparameter on reconstruction quality, latent space structure, and image diversity
+- **DDPMs** — explore the iterative denoising approach and its advantages and limitations compared to VAEs
+
+All models are evaluated using **Fréchet Inception Distance (FID)** and **Inception Score (IS)**, with dataset-specific ResNet-18 classifiers trained for the IS computation.
+
+---
 
 ## Repository Structure
 
-The repository is organized into multiple branches, each focusing on a specific component of the project:
-
 ```bash
 main                # Documentation and project overview
-feat/classifiers    # Classifier training + checkpoints (for IS score)
-feat/VAEs           # VAE training, experiments, and checkpoints
-feat/DDPMs          # DDPM implementation and training scripts
+feat/classifiers    # ResNet-18 classifier training + checkpoints (for IS computation)
+feat/VAEs           # VAE implementation, experiments, and checkpoints
+feat/DDPMs          # DDPM implementation, training, and generation pipeline
 ```
 
-
-## Project Overview
-
-This project aims to:
-
-- Implement generative models from scratch
-- Study the effect of hyperparameters (e.g., β in VAEs)
-- Compare performance across datasets of increasing complexity
-- Evaluate generated samples using:
-  * FID → measures similarity to real data distribution
-  * Inception Score (IS) → measures quality and diversity
+---
 
 
+## Branches
 
-## Branches Details
-
-
-* ### feat/classifiers
-
-Contains the notebook for training classifiers used in Inception Score computation
+### `feat/classifiers`
+ResNet-18 classifiers trained per-dataset, used exclusively for **Inception Score** computation during evaluation (not for generation).
 
 Includes trained checkpoints for:
+- MNIST
+- CIFAR-10
+- Oxford Flowers
 
-   * MNIST
-   * CIFAR10
-   * Oxford Flowers
+---
 
-These classifiers are not used for generation, only for evaluation
-
-
-* ### feat/VAEs
-
-Implementation and training of Variational Autoencoders
-
-Experiments conducted with different β values to study:
-
-   * Reconstruction vs regularization trade-off
-   * Latent space behavior
+### `feat/VAEs`
+Full VAE implementation with a flexible β parameter to study the reconstruction vs. regularisation trade-off.
 
 Includes:
-   1. Training notebook
-   2. Saved checkpoints for multiple configurations
+- Training, evaluation, and sampling notebook
+- Saved checkpoints for multiple β configurations across all three datasets
 
+> 📄 See the [feat/VAEs README](https://github.com/SaraElwatany/Generative-Models/blob/feat/VAEs/README.md) for full details, results, and usage instructions.
 
+---
 
-* ### feat/DDPMs
-
-Implementation of Denoising Diffusion Probabilistic Models
+### `feat/DDPMs`
+Full DDPM implementation with a modular U-Net backbone (inspired by Stable Diffusion), including forward/reverse diffusion, temporal embeddings, and iterative generation.
 
 Includes:
-   - Training notebook with also sampling/generation pipeline
+- Training, evaluation, and generation notebook
+- Checkpoints available via Google Drive (too large for Git storage)
 
+| Dataset | Checkpoint |
+|---|---|
+| MNIST | [⬇️ Google Drive](https://drive.google.com/file/d/1NCyypYBKebnIEkilcrfvbYD24TgmjzjD/view?usp=sharing) |
+| CIFAR-10 | [⬇️ Google Drive](https://drive.google.com/file/d/1hygbg--YR2el-pPI0PrPNizwtqSduI4Q/view?usp=sharing) |
+| Oxford Flowers | [⬇️ Google Drive](https://drive.google.com/file/d/1mwKy32fVXQYYaWOUgbYqeEj8MKzoXzTG/view?usp=sharing) |
 
+> 📄 See the [feat/DDPMs README](https://github.com/SaraElwatany/Generative-Models/blob/feat/DDPMs/README.md) for full details, results, and usage instructions.
 
-**Note:**
+---
 
-Due to large file sizes, DDPM checkpoints are not stored in the repository. They are available via Google Drive.
+## Datasets
 
+| Dataset | Classes | Resolution | Complexity |
+|---|---|---|---|
+| **MNIST** | 10 (digits 0–9) | Resized to 32×32 grayscale | ⬛ Low |
+| **CIFAR-10** | 10 (vehicles, animals) | 32×32 RGB | 🟧 Medium |
+| **Oxford Flowers** | 102 flower categories | Resized to 32×32 RGB | 🟥 High |
 
-
-## Datasets Used
-
-The project evaluates models on datasets with increasing complexity:
-
-- MNIST → Simple grayscale digits
-- CIFAR10 → Low-resolution natural images
-- Oxford Flowers → More complex, fine-grained dataset
-
-
+---
 
 ## Evaluation Metrics
 
+### Fréchet Inception Distance (FID)
+Measures the statistical distance between the distributions of real and generated images using features from a pretrained network.
 
-* ### Inception Score (IS)
+$$\text{FID} = \|\mu_r - \mu_g\|^2 + \text{Tr}\left(\Sigma_r + \Sigma_g - 2\sqrt{\Sigma_r \Sigma_g}\right)$$
 
-Uses a trained classifier to compute:
-   1. Confidence → clear class predictions
-   2. Diversity → variety across classes
-  
+**Lower FID → generated images are more realistic and diverse.**
 
-* ### Fréchet Inception Distance (FID)
+### Inception Score (IS)
+Evaluates both the **quality** (confident predictions) and **diversity** (spread across classes) of generated images using a dataset-specific classifier.
 
-Measures distance between real and generated image distributions. Lower is better.
+$$\text{IS} = \exp\left(\mathbb{E}_x\, D_{KL}(p(y|x) \| p(y))\right)$$
 
+**Higher IS → images are sharp and class-diverse.**
 
+---
+
+## Experimental Results Summary
+
+### VAE — Best Configuration per Dataset
+
+| Dataset | Best β | FID ↓ | Inception Score ↑ |
+|---|---|---|---|
+| MNIST | 1.0 | 342.085 | 5.621 ± 0.919 |
+| CIFAR-10 | 0.5 | 354.650 | 2.379 ± 0.256 |
+| Oxford Flowers | 1.0 | 295.922 | 1.188 ± 0.058 |
+
+### DDPM — Results per Dataset
+
+| Dataset | Epochs | FID ↓ | Inception Score ↑ |
+|---|---|---|---|
+| MNIST | 10 | **74.295** | **5.110 ± 0.794** |
+| CIFAR-10 | 15 | 449.544 | 1.602 ± 0.302 |
+| Oxford Flowers | 700 | 377.436 | 31.166 ± 0.030 |
+
+### VAE vs. DDPM — Head to Head
+
+| | VAE | DDPM |
+|---|---|---|
+| **Image Sharpness** | 🟧 Blurry (MSE averaging) | ✅ Sharp (iterative denoising) |
+| **Training Speed** | ✅ Fast | 🟧 Slow |
+| **Data Requirements** | ✅ Works on small datasets | 🟥 Data-hungry |
+| **Diversity** | 🟧 Tends to repeat structures | ✅ More varied outputs |
+| **Small Dataset Performance** | ✅ Decent | 🟥 Struggles |
+| **Simple Dataset Performance** | 🟧 Blurry but coherent | ✅ Sharp and diverse |
+
+---
 
 ## Key Insights
 
+**VAEs**
+- Lower β → better reconstruction, less regularised latent space, sharper edges
+- Higher β → smoother outputs, stronger latent structure, loss of fine detail
+- Inherently blurry due to pixel-wise MSE loss averaging over possible outputs
+- Stable and practical even on small datasets like Oxford Flowers
 
-* ### VAEs
-  
-  * Lower β → better reconstruction, less regularized latent space
-  * Higher β → smoother images, stronger latent structure, but loss of details
-  * Tend to produce blurry outputs due to pixel-wise loss (e.g., MSE)
+**DDPMs**
+- Produce significantly sharper and more diverse samples than VAEs when given sufficient data
+- Highly data-hungry — small datasets (e.g., Oxford Flowers with ~8K images) are not enough
+- MNIST results clearly demonstrate the quality ceiling DDPMs can reach with simple data
+- Require substantially more compute and training time than VAEs
 
+**Dataset Complexity**
+- **MNIST** → easiest; both models learn meaningful structure, DDPM clearly wins
+- **CIFAR-10** → moderate difficulty; neither model fully succeeds under constrained training
+- **Oxford Flowers** → most challenging; VAE produces blurry but structured outputs; DDPM fails to learn any structure due to insufficient data
 
-
-* ### DDPMs
-
-  * Generate sharper and more realistic samples compared to VAEs
-  * Require more training time and computational resources
-
-
-* ### Dataset Complexity
-  
-  * MNIST → easiest, strong structure learning
-  * CIFAR10 → moderate difficulty with more variability
-  * Oxford Flowers → most challenging due to fine-grained details
-
+---
 
 ## How to Use
 
+### Option 1 — Explore by Branch
 
-* ### Option 1: Explore by Branch
+```bash
+git clone https://github.com/SaraElwatany/Generative-Models.git
+cd Generative-Models
+git checkout feat/VAEs      # or feat/DDPMs, feat/classifiers
+```
 
-  1. git clone https://github.com/SaraElwatany/Generative-Models.git
-  2. git checkout branch_name
+### Option 2 — Run on Kaggle
 
+| Branch | Notebook |
+|---|---|
+| `feat/VAEs` | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/saraaymanelwatany/vae-pytorch) |
+| `feat/DDPMs` | [![Open in Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/saraaymanelwatany/ddpm-pytorch) |
 
-* ### Option 2: Run on Kaggle
+### Option 3 — Run Locally
 
-  1. Upload notebooks from any branch to Kaggle
-  2. Enable GPU for better performance
-  3. Update paths as needed
+```bash
+# 1. Install Git LFS for large checkpoint files
+git lfs install
 
+# 2. Clone the repository
+git clone https://github.com/SaraElwatany/Generative-Models.git
 
-* ### Option 3: Run Locally
+# 3. Install dependencies
+pip install torch torchvision numpy matplotlib scikit-learn scipy tqdm
 
-  1. Install Git LFS for large files:
-    git lfs install
-  2. Clone the repository
-  3. Update dataset/checkpoint paths
-  4. Run notebooks or scripts
+# 4. Checkout the branch you want and run the notebook
+git checkout feat/VAEs
+```
 
-
-## Notes
-
-- Large checkpoint files are handled using Git LFS
-- DDPM checkpoints are stored externally (Google Drive) due to size limits
-- Classifiers are used strictly for evaluation (IS score)
+---
 
 
 ## Future Work
 
-- Improve VAE sharpness using:
-   * Perceptual loss
-   * VAE-GAN hybrids
-- Train DDPMs for longer schedules
-- Explore advanced diffusion models (e.g., DDIM, Latent Diffusion)
-- Apply models to higher-resolution datasets
+- Improve VAE sharpness using perceptual loss or VAE-GAN hybrids
+- Train DDPMs for longer with larger model capacity on CIFAR-10
+- Explore **DDIM** (faster sampling) and **Latent Diffusion Models** (memory-efficient, higher resolution)
+- Apply models to higher-resolution datasets with proper augmentation pipelines
+- Experiment with conditional generation (class-conditioned VAEs and DDPMs)
+
+---
