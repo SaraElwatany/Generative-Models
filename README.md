@@ -98,9 +98,8 @@ Takes the latent vector **z**, reshapes it into a spatial tensor, and passes it 
 
 The VAE loss combines two terms:
 
-```
 $$\mathcal{L} = \mathcal{L}_{\text{recon}} + \beta \cdot D_{KL}$$
-```
+
 
 **Reconstruction Loss options:**
 
