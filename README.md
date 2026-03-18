@@ -38,7 +38,7 @@ All training was conducted on **Kaggle GPU notebooks** to leverage free GPU comp
 ```
 feat/VAEs/
 │
-├── vae_notebook.ipynb          # Main Kaggle notebook: build, train, evaluate, sample
+├── vae_pytorch.ipynb          # Main Kaggle notebook: build, train, evaluate, sample
 │
 └── checkpoints/                # Saved model checkpoints for different configs
     ├── mnist/
