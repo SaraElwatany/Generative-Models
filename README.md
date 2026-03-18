@@ -107,11 +107,11 @@ The scheduler governs both directions of the diffusion process:
 
 **Forward Process** — gradually adds Gaussian noise to an image over `T` timesteps until the image becomes pure noise:
 
-$$q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t}\, x_{t-1},\ \beta_t \mathbf{I})$$
+$$x_t = \sqrt{1 - \beta_t} \cdot x_{t-1} + \sqrt{\beta_t} \cdot \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, I)$$
 
 **Reverse Process** — the model learns to denoise step by step, predicting the noise residual at each timestep:
 
-$$p_\theta(x_{t-1} | x_t) = \mathcal{N}(x_{t-1};\ \mu_\theta(x_t, t),\ \Sigma_\theta(x_t, t))$$
+$$x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \cdot \varepsilon_\theta(x_t, t) \right) + \sigma_t \cdot z$$
 
 The scheduler computes the mean and variance for each reverse step to ensure smooth, stable denoising rather than abrupt jumps.
 
