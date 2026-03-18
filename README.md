@@ -15,8 +15,8 @@ The repository is organized into multiple branches, each focusing on a specific 
 ```bash
 main                # Documentation and project overview
 feat/classifiers    # Classifier training + checkpoints (for IS score)
-feat/vaes           # VAE training, experiments, and checkpoints
-feat/ddpms          # DDPM implementation and training scripts
+feat/VAEs           # VAE training, experiments, and checkpoints
+feat/DDPMs          # DDPM implementation and training scripts
 ```
 
 
@@ -36,7 +36,7 @@ This project aims to:
 ## Branches Details
 
 
-#### feat/classifiers
+* #### feat/classifiers
 
 Contains the notebook for training classifiers used in Inception Score computation
 
@@ -48,7 +48,7 @@ Includes trained checkpoints for:
 These classifiers are not used for generation, only for evaluation
 
 
-#### feat/VAEs
+* #### feat/VAEs
 
 Implementation and training of Variational Autoencoders
 
@@ -57,19 +57,19 @@ Experiments conducted with different β values to study:
 * Reconstruction vs regularization trade-off
 * Latent space behavior
 * Includes:
-  1- Training notebook
-  2- Saved checkpoints for multiple configurations
+1. Training notebook
+2. Saved checkpoints for multiple configurations
 
 
 
-#### feat/DDPMs
+* #### feat/DDPMs
 
 Implementation of Denoising Diffusion Probabilistic Models
 
 Includes:
 - Training notebook with also sampling/generation pipeline
 
-* Note:
+**Note:**
 Due to large file sizes, DDPM checkpoints are not stored in the repository.
 They are available via Google Drive (add link here).
 
