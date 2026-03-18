@@ -7,7 +7,6 @@ This repository contains implementations and experiments for **deep generative m
 
 The project explores model behavior across multiple datasets and evaluates performance using metrics such as **Fréchet Inception Distance (FID)** and **Inception Score (IS)**.
 
----
 
 ## Repository Structure
 
@@ -67,11 +66,9 @@ Saved checkpoints for multiple configurations
 
 Results across datasets:
 
-MNIST
-
-CIFAR10
-
-Oxford Flowers
+ - MNIST
+- CIFAR10
+- Oxford Flowers
 
 feat/ddpms
 
@@ -87,26 +84,25 @@ Note:
 Due to large file sizes, DDPM checkpoints are not stored in the repository.
 They are available via Google Drive (add link here).
 
-Datasets Used
+
+## Datasets Used
 
 The project evaluates models on datasets with increasing complexity:
 
-MNIST → Simple grayscale digits
+- MNIST → Simple grayscale digits
+- CIFAR10 → Low-resolution natural images
+- Oxford Flowers → More complex, fine-grained dataset
 
-CIFAR10 → Low-resolution natural images
 
-Oxford Flowers → More complex, fine-grained dataset
+## Evaluation Metrics
 
-Evaluation Metrics
-Inception Score (IS)
+* Inception Score (IS)
 
 Uses a trained classifier to compute:
 
-Confidence → clear class predictions
-
-Diversity → variety across classes
-
-Fréchet Inception Distance (FID)
+- Confidence → clear class predictions
+- Diversity → variety across classes
+- Fréchet Inception Distance (FID)
 
 Measures distance between real and generated image distributions
 
@@ -163,24 +159,20 @@ Update dataset/checkpoint paths
 
 Run notebooks or scripts
 
-Notes
 
-Large checkpoint files are handled using Git LFS
+## Notes
 
-DDPM checkpoints are stored externally (Google Drive) due to size limits
+- Large checkpoint files are handled using Git LFS
+- DDPM checkpoints are stored externally (Google Drive) due to size limits
+- Classifiers are used strictly for evaluation (IS score)
 
-Classifiers are used strictly for evaluation (IS score)
 
-Future Work
+## Future Work
 
-Improve VAE sharpness using:
+- Improve VAE sharpness using:
+ - Perceptual loss
+ - VAE-GAN hybrids
+ - Train DDPMs for longer schedules
 
-Perceptual loss
-
-VAE-GAN hybrids
-
-Train DDPMs for longer schedules
-
-Explore advanced diffusion models (e.g., DDIM, Latent Diffusion)
-
-Apply models to higher-resolution datasets
+- Explore advanced diffusion models (e.g., DDIM, Latent Diffusion)
+- Apply models to higher-resolution datasets
