@@ -36,44 +36,45 @@ This project aims to:
 ## Branches Details
 
 
-* #### feat/classifiers
+* ### feat/classifiers
 
 Contains the notebook for training classifiers used in Inception Score computation
 
 Includes trained checkpoints for:
- - MNIST
- - CIFAR10
- - Oxford Flowers
+    - MNIST
+    - CIFAR10
+    - Oxford Flowers
 
 These classifiers are not used for generation, only for evaluation
 
 
-* #### feat/VAEs
+* ### feat/VAEs
 
 Implementation and training of Variational Autoencoders
 
 Experiments conducted with different β values to study:
 
-* Reconstruction vs regularization trade-off
-* Latent space behavior
+   * Reconstruction vs regularization trade-off
+   * Latent space behavior
 
 Includes:
-  1. Training notebook
-  2. Saved checkpoints for multiple configurations
+   1. Training notebook
+   2. Saved checkpoints for multiple configurations
 
 
 
-* #### feat/DDPMs
+* ### feat/DDPMs
 
 Implementation of Denoising Diffusion Probabilistic Models
 
 Includes:
-  - Training notebook with also sampling/generation pipeline
+   - Training notebook with also sampling/generation pipeline
+
 
 
 **Note:**
 
-Due to large file sizes, DDPM checkpoints are not stored in the repository. They are available via Google Drive (add link here).
+Due to large file sizes, DDPM checkpoints are not stored in the repository. They are available via Google Drive.
 
 
 
@@ -86,18 +87,18 @@ The project evaluates models on datasets with increasing complexity:
 - Oxford Flowers → More complex, fine-grained dataset
 
 
+
 ## Evaluation Metrics
 
 
-* #### Inception Score (IS)
+* ### Inception Score (IS)
 
 Uses a trained classifier to compute:
-
-- Confidence → clear class predictions
-- Diversity → variety across classes
+    - Confidence → clear class predictions
+    - Diversity → variety across classes
   
 
-* #### Fréchet Inception Distance (FID)
+* ### Fréchet Inception Distance (FID)
 
 Measures distance between real and generated image distributions. Lower is better.
 
@@ -159,8 +160,8 @@ Run notebooks or scripts
 ## Future Work
 
 - Improve VAE sharpness using:
-  * Perceptual loss
-  * VAE-GAN hybrids
-  * Train DDPMs for longer schedules
+   * Perceptual loss
+   * VAE-GAN hybrids
+- Train DDPMs for longer schedules
 - Explore advanced diffusion models (e.g., DDIM, Latent Diffusion)
 - Apply models to higher-resolution datasets
