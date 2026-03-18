@@ -41,10 +41,9 @@ This project aims to:
 Contains the notebook for training classifiers used in Inception Score computation
 
 Includes trained checkpoints for:
-
-    - MNIST
-    - CIFAR10
-    - Oxford Flowers
+   * MNIST
+   * CIFAR10
+   * Oxford Flowers
 
 These classifiers are not used for generation, only for evaluation
 
@@ -95,9 +94,8 @@ The project evaluates models on datasets with increasing complexity:
 * ### Inception Score (IS)
 
 Uses a trained classifier to compute:
-
-    - Confidence → clear class predictions
-    - Diversity → variety across classes
+   * Confidence → clear class predictions
+   * Diversity → variety across classes
   
 
 * ### Fréchet Inception Distance (FID)
@@ -109,40 +107,44 @@ Measures distance between real and generated image distributions. Lower is bette
 ## Key Insights
 
 
-* VAEs
-
-- Lower β → better reconstruction, less regularized latent space
-- Higher β → smoother images, stronger latent structure, but loss of details
-- Tend to produce blurry outputs due to pixel-wise loss (e.g., MSE)
-
-
-* DDPMs
-
-- Generate sharper and more realistic samples compared to VAEs
-- Require more training time and computational resources
-
-
-* Dataset Complexity
+* ### VAEs
   
-- MNIST → easiest, strong structure learning
-- CIFAR10 → moderate difficulty with more variability
-- Oxford Flowers → most challenging due to fine-grained details
+ * Lower β → better reconstruction, less regularized latent space
+ * Higher β → smoother images, stronger latent structure, but loss of details
+ * Tend to produce blurry outputs due to pixel-wise loss (e.g., MSE)
+
+
+
+* ### DDPMs
+
+ * Generate sharper and more realistic samples compared to VAEs
+ * Require more training time and computational resources
+
+
+* ### Dataset Complexity
+  
+ - MNIST → easiest, strong structure learning
+ - CIFAR10 → moderate difficulty with more variability
+ - Oxford Flowers → most challenging due to fine-grained details
 
 
 ## How to Use
 
-Option 1: Explore by Branch
+
+* ### Option 1: Explore by Branch
 
 git clone <repo_url>
 git checkout feat/vaes
 
-Option 2: Run on Kaggle
+
+* ### Option 2: Run on Kaggle
 
 Upload notebooks from any branch to Kaggle
 Enable GPU for better performance
 Update dataset paths as needed
 
-Option 3: Run Locally
+
+* ### Option 3: Run Locally
 
 Clone the repository
 Install dependencies (PyTorch, Torchvision, etc.)
