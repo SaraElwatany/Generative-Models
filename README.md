@@ -68,14 +68,12 @@ Includes:
 Implementation of Denoising Diffusion Probabilistic Models
 
 Includes:
-- Training notebook with also sampling/generation pipeline
+  - Training notebook with also sampling/generation pipeline
 
 
 **Note:**
 
-Due to large file sizes, DDPM checkpoints are not stored in the repository.
-
-They are available via Google Drive (add link here).
+Due to large file sizes, DDPM checkpoints are not stored in the repository. They are available via Google Drive (add link here).
 
 
 
@@ -90,42 +88,42 @@ The project evaluates models on datasets with increasing complexity:
 
 ## Evaluation Metrics
 
-* Inception Score (IS)
+
+* #### Inception Score (IS)
 
 Uses a trained classifier to compute:
 
 - Confidence → clear class predictions
 - Diversity → variety across classes
-- Fréchet Inception Distance (FID)
+  
 
-Measures distance between real and generated image distributions
+* #### Fréchet Inception Distance (FID)
 
-Lower is better
+Measures distance between real and generated image distributions. Lower is better.
 
-Key Insights
-VAEs
 
-Lower β → better reconstruction, less regularized latent space
 
-Higher β → smoother images, stronger latent structure, but loss of details
+## Key Insights
 
-Tend to produce blurry outputs due to pixel-wise loss (e.g., MSE)
 
-DDPMs
+* VAEs
 
-Generate sharper and more realistic samples compared to VAEs
+- Lower β → better reconstruction, less regularized latent space
+- Higher β → smoother images, stronger latent structure, but loss of details
+- Tend to produce blurry outputs due to pixel-wise loss (e.g., MSE)
 
-Require more training time and computational resources
 
-Performance improves significantly with more training steps
+* DDPMs
 
-Dataset Complexity
+- Generate sharper and more realistic samples compared to VAEs
+- Require more training time and computational resources
 
-MNIST → easiest, strong structure learning
 
-CIFAR10 → moderate difficulty with more variability
-
-Oxford Flowers → most challenging due to fine-grained details
+* Dataset Complexity
+  
+- MNIST → easiest, strong structure learning
+- CIFAR10 → moderate difficulty with more variability
+- Oxford Flowers → most challenging due to fine-grained details
 
 
 ## How to Use
