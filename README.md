@@ -57,8 +57,8 @@ Experiments conducted with different β values to study:
 * Reconstruction vs regularization trade-off
 * Latent space behavior
 * Includes:
-1. Training notebook
-2. Saved checkpoints for multiple configurations
+  1. Training notebook
+  2. Saved checkpoints for multiple configurations
 
 
 
