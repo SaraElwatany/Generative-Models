@@ -123,9 +123,9 @@ Measures distance between real and generated image distributions. Lower is bette
 
 * ### Dataset Complexity
   
- 1. MNIST → easiest, strong structure learning
- 2. CIFAR10 → moderate difficulty with more variability
- 3. Oxford Flowers → most challenging due to fine-grained details
+  * MNIST → easiest, strong structure learning
+  * CIFAR10 → moderate difficulty with more variability
+  * Oxford Flowers → most challenging due to fine-grained details
 
 
 ## How to Use
@@ -146,11 +146,11 @@ Measures distance between real and generated image distributions. Lower is bette
 
 * ### Option 3: Run Locally
 
-1. Install Git LFS for large files:
-  git lfs install
-2. Clone the repository
-3. Update dataset/checkpoint paths
-4. Run notebooks or scripts
+  1. Install Git LFS for large files:
+    git lfs install
+  2. Clone the repository
+  3. Update dataset/checkpoint paths
+  4. Run notebooks or scripts
 
 
 ## Notes
