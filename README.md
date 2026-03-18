@@ -67,5 +67,15 @@ These checkpoints are used when calculating Inception Scores for generated image
 
 
 ## Usage
-If you wish you can upload the notebook directly to kaggle, for max experience don't forget to turn on the gpu from settings.
-or clone the repo to your local laptop, install git lfs first, replace any paths that you might see to your desired path, run the notebook
+
+You can either:
+
+1. **Run directly on Kaggle**  
+   - Upload the notebook to Kaggle.  
+   - For best performance, enable a GPU in the notebook settings.
+
+2. **Run locally**
+   - Install [Git LFS](https://git-lfs.github.com/) to handle the large checkpoint files.  
+   - Clone the repository to your local machine.  
+   - Update any file paths in the notebook to match your local directories.  
+   - Run the notebook as usual.
