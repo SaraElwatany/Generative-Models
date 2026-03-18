@@ -82,9 +82,7 @@ Takes the input image, passes it through a series of convolutional layers, flatt
 ### Reparameterisation Trick
 The latent vector **z** is sampled using:
 
-```
-z = μ + ε · exp(0.5 · logvar),    ε ~ N(0, I)
-```
+$$z = \mu + \varepsilon \cdot e^{0.5 \cdot \log\sigma^2}, \quad \varepsilon \sim \mathcal{N}(0, I)$$
 
 This allows gradients to flow through the sampling step during backpropagation.
 
@@ -98,9 +96,8 @@ Takes the latent vector **z**, reshapes it into a spatial tensor, and passes it 
 
 The VAE loss combines two terms:
 
-```
-L = Reconstruction Loss + β · KL Divergence
-```
+$$\mathcal{L} = \mathcal{L}_{\text{recon}} + \beta \cdot D_{KL}$$
+
 
 **Reconstruction Loss options:**
 
@@ -166,7 +163,7 @@ Open the notebook directly on Kaggle to use free GPU compute:
 Steps:
 1. Open the notebook on Kaggle.
 2. Enable GPU: `Settings → Accelerator → GPU T4 x2` (or P100).
-3. Select your dataset: set `DATASET = INDEX` where INDEX: `0` → MNIST · `1` → CIFAR-10 · `2` → Oxford Flowers
+3. Select your dataset: set `DATASET_INDEX = INDEX` where INDEX: `0` → MNIST · `1` → CIFAR-10 · `2` → Oxford Flowers
 4. Set your desired beta value.
 5. Run all cells to train, evaluate, and generate samples.
 
@@ -194,7 +191,6 @@ At the **"Load Training & Testing Datasets"** section in the notebook in the con
 
 ```python
 DATASET_INDEX = int       # Options: 0: "mnist", 1: "cifar10", 2: "oxford_flowers"
-
 Ex:
 DATASET_INDEX = 0      # Will load the mnist dataset
 ```
