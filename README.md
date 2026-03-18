@@ -56,7 +56,8 @@ Experiments conducted with different β values to study:
 
 * Reconstruction vs regularization trade-off
 * Latent space behavior
-* Includes:
+
+Includes:
   1. Training notebook
   2. Saved checkpoints for multiple configurations
 
@@ -69,8 +70,11 @@ Implementation of Denoising Diffusion Probabilistic Models
 Includes:
 - Training notebook with also sampling/generation pipeline
 
+
 **Note:**
+
 Due to large file sizes, DDPM checkpoints are not stored in the repository.
+
 They are available via Google Drive (add link here).
 
 
