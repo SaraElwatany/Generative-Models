@@ -109,23 +109,23 @@ Measures distance between real and generated image distributions. Lower is bette
 
 * ### VAEs
   
- * Lower β → better reconstruction, less regularized latent space
- * Higher β → smoother images, stronger latent structure, but loss of details
- * Tend to produce blurry outputs due to pixel-wise loss (e.g., MSE)
+  * Lower β → better reconstruction, less regularized latent space
+  * Higher β → smoother images, stronger latent structure, but loss of details
+  * Tend to produce blurry outputs due to pixel-wise loss (e.g., MSE)
 
 
 
 * ### DDPMs
 
- * Generate sharper and more realistic samples compared to VAEs
- * Require more training time and computational resources
+  * Generate sharper and more realistic samples compared to VAEs
+  * Require more training time and computational resources
 
 
 * ### Dataset Complexity
   
- - MNIST → easiest, strong structure learning
- - CIFAR10 → moderate difficulty with more variability
- - Oxford Flowers → most challenging due to fine-grained details
+ 1. MNIST → easiest, strong structure learning
+ 2. CIFAR10 → moderate difficulty with more variability
+ 3. Oxford Flowers → most challenging due to fine-grained details
 
 
 ## How to Use
@@ -133,25 +133,24 @@ Measures distance between real and generated image distributions. Lower is bette
 
 * ### Option 1: Explore by Branch
 
-git clone <repo_url>
-git checkout feat/vaes
+  1. git clone https://github.com/SaraElwatany/Generative-Models.git
+  2. git checkout branch_name
 
 
 * ### Option 2: Run on Kaggle
 
-Upload notebooks from any branch to Kaggle
-Enable GPU for better performance
-Update dataset paths as needed
+  1. Upload notebooks from any branch to Kaggle
+  2. Enable GPU for better performance
+  3. Update paths as needed
 
 
 * ### Option 3: Run Locally
 
-Clone the repository
-Install dependencies (PyTorch, Torchvision, etc.)
-Install Git LFS for large files:
-git lfs install
-Update dataset/checkpoint paths
-Run notebooks or scripts
+1. Install Git LFS for large files:
+  git lfs install
+2. Clone the repository
+3. Update dataset/checkpoint paths
+4. Run notebooks or scripts
 
 
 ## Notes
