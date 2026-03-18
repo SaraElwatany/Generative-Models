@@ -41,9 +41,9 @@ This project aims to:
 Contains the notebook for training classifiers used in Inception Score computation
 
 Includes trained checkpoints for:
-   * MNIST
-   * CIFAR10
-   * Oxford Flowers
+    * MNIST
+    * CIFAR10
+    * Oxford Flowers
 
 These classifiers are not used for generation, only for evaluation
 
@@ -53,13 +53,12 @@ These classifiers are not used for generation, only for evaluation
 Implementation and training of Variational Autoencoders
 
 Experiments conducted with different β values to study:
-
-   * Reconstruction vs regularization trade-off
-   * Latent space behavior
+    * Reconstruction vs regularization trade-off
+    * Latent space behavior
 
 Includes:
-   1. Training notebook
-   2. Saved checkpoints for multiple configurations
+    1. Training notebook
+    2. Saved checkpoints for multiple configurations
 
 
 
