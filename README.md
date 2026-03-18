@@ -41,6 +41,7 @@ This project aims to:
 Contains the notebook for training classifiers used in Inception Score computation
 
 Includes trained checkpoints for:
+
     - MNIST
     - CIFAR10
     - Oxford Flowers
@@ -94,6 +95,7 @@ The project evaluates models on datasets with increasing complexity:
 * ### Inception Score (IS)
 
 Uses a trained classifier to compute:
+
     - Confidence → clear class predictions
     - Diversity → variety across classes
   
