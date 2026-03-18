@@ -124,7 +124,7 @@ L = Reconstruction Loss + β · KL Divergence
 |---|---|
 | Optimiser | Adam |
 | Learning Rate Scheduler | ReduceLROnPlateau |
-| Early Stopping | ✅ Enabled (based on validation loss) |
+| Early Stopping | ✅ Enabled |
 | Checkpointing | ✅ Best model saved per config |
 | Resume from Checkpoint | ✅ Supported |
 | Default Samples at Generation | 100 |
