@@ -291,8 +291,7 @@ print(f"FID: {fid_score:.3f} | IS: {inc_score[0]:.4f} ± {inc_score[1]:.4f}")
 
 - **VAEs are fast and stable to train**, even on small datasets, but are fundamentally constrained by reconstruction blurriness — particularly when using MSE loss, which averages over possible outputs.
 - **The β parameter is a powerful dial**: higher β improves distributional alignment (lower FID) up to a point, after which excessive regularisation harms reconstruction quality.
-- **L1 loss** can produce slightly sharper edges than MSE and is worth experimenting with on more complex datasets.
-- **Early stopping** is critical to prevent wasted computation and overfitting, especially at high β where the loss landscape changes more abruptly.
+- **Early stopping** is critical to prevent wasted computation and overfitting.
 - **VAEs remain competitive on small datasets** where DDPMs struggle due to data hunger — see the Oxford Flowers results for a direct demonstration of this.
 
 ---
