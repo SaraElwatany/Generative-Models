@@ -32,57 +32,47 @@ This project aims to:
   * Inception Score (IS) → measures quality and diversity
 
 
-## Branch Details
 
-feat/classifiers
+## Branches Details
+
+
+#### feat/classifiers
 
 Contains the notebook for training classifiers used in Inception Score computation
 
 Includes trained checkpoints for:
-
-MNIST
-
-CIFAR10
-
-Oxford Flowers
+ - MNIST
+ - CIFAR10
+ - Oxford Flowers
 
 These classifiers are not used for generation, only for evaluation
 
-feat/vaes
+
+#### feat/VAEs
 
 Implementation and training of Variational Autoencoders
 
 Experiments conducted with different β values to study:
 
-Reconstruction vs regularization trade-off
+* Reconstruction vs regularization trade-off
+* Latent space behavior
+* Includes:
+  1- Training notebook
+  2- Saved checkpoints for multiple configurations
 
-Latent space behavior
 
-Includes:
 
-Training notebooks/scripts
-
-Saved checkpoints for multiple configurations
-
-Results across datasets:
-
- - MNIST
-- CIFAR10
-- Oxford Flowers
-
-feat/ddpms
+#### feat/DDPMs
 
 Implementation of Denoising Diffusion Probabilistic Models
 
 Includes:
+- Training notebook with also sampling/generation pipeline
 
-Training scripts
-
-Sampling/generation pipeline
-
-Note:
+* Note:
 Due to large file sizes, DDPM checkpoints are not stored in the repository.
 They are available via Google Drive (add link here).
+
 
 
 ## Datasets Used
@@ -133,30 +123,27 @@ CIFAR10 → moderate difficulty with more variability
 
 Oxford Flowers → most challenging due to fine-grained details
 
-How to Use
+
+## How to Use
+
 Option 1: Explore by Branch
+
 git clone <repo_url>
 git checkout feat/vaes
+
 Option 2: Run on Kaggle
 
 Upload notebooks from any branch to Kaggle
-
 Enable GPU for better performance
-
 Update dataset paths as needed
 
 Option 3: Run Locally
 
 Clone the repository
-
 Install dependencies (PyTorch, Torchvision, etc.)
-
 Install Git LFS for large files:
-
 git lfs install
-
 Update dataset/checkpoint paths
-
 Run notebooks or scripts
 
 
@@ -170,9 +157,8 @@ Run notebooks or scripts
 ## Future Work
 
 - Improve VAE sharpness using:
- - Perceptual loss
- - VAE-GAN hybrids
- - Train DDPMs for longer schedules
-
+  * Perceptual loss
+  * VAE-GAN hybrids
+  * Train DDPMs for longer schedules
 - Explore advanced diffusion models (e.g., DDIM, Latent Diffusion)
 - Apply models to higher-resolution datasets
